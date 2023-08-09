@@ -10,7 +10,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user"
-
         android:layout_width="374dp"
         android:layout_height="79dp"
         android:layout_marginHorizontal="16dp"
