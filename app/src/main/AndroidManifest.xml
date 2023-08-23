@@ -13,6 +13,22 @@
         android:theme="@style/Theme.Projectfinal"
         tools:targetApi="31">
         <activity
+            android:name=".student"
+            android:exported="false" />
+        <activity
+            android:name=".additional_details"
+            android:exported="false" />
+        <activity
+            android:name=".academic_details"
+            android:exported="false" />
+        <activity
+            android:name=".educational_details"
+            android:exported="false" />
+        <activity
+            android:name=".student_details"
+            android:exported="false" />
+
+        <activity
             android:name=".chooseRole"
             android:exported="false" />
         <activity
@@ -34,7 +50,7 @@
             android:exported="true" />
         <activity
             android:name=".SignInActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
