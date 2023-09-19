@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Projectfinal"
         tools:targetApi="31">
         <activity
+            android:name=".forgetpassword"
+            android:exported="false" />
+        <activity
+            android:name=".Separateactivity"
+            android:exported="false" />
+        <activity
+            android:name=".dummy"
+            android:exported="false" />
+        <activity
+            android:name=".StaffView"
+            android:exported="false" />
+        <activity
+            android:name=".StaffSignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StaffSignInActiviy"
+            android:exported="false" />
+        <activity
             android:name=".student"
             android:exported="false" />
         <activity
@@ -27,7 +45,6 @@
         <activity
             android:name=".student_details"
             android:exported="false" />
-
         <activity
             android:name=".chooseRole"
             android:exported="false" />

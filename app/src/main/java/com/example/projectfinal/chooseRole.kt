@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.widget.ImageButton
 
 class chooseRole : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_role)
 
@@ -19,7 +20,7 @@ class chooseRole : AppCompatActivity() {
             startActivity(intent)
         }
         staffButton.setOnClickListener{
-            val intent = Intent(this@chooseRole,SignInActivity::class.java)
+            val intent = Intent(this@chooseRole,StaffSignInActiviy::class.java)
             startActivity(intent)
         }
     }

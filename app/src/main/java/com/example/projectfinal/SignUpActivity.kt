@@ -34,10 +34,8 @@ class SignUpActivity : AppCompatActivity() {
             val rollno = binding.rollno.text.toString()
             val user=binding.username.text.toString()
 
-            val basic = mapOf(
-                "name" to user,
-                "rollno" to rollno
-            )
+
+
 
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
@@ -46,7 +44,13 @@ class SignUpActivity : AppCompatActivity() {
                 firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
                         val uid= firebaseAuth.currentUser?.uid.toString()
-                        val intent = Intent(this, SignInActivity::class.java)
+                            val intent = Intent(this, SignInActivity::class.java)
+                        val basic = mapOf(
+                            "name" to user,
+                            "rollno" to rollno,
+                            "Role" to "student",
+                            "Id" to uid
+                        )
                         db.collection("user").document(uid).set(basic)
                         startActivity(intent)
                     } else {

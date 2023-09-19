@@ -26,6 +26,10 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+        binding.textView8.setOnClickListener{
+            val intent=Intent(this,forgetpassword::class.java)
+            startActivity(intent)
+        }
 
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString()
@@ -52,7 +56,7 @@ class SignInActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        if(firebaseAuth.currentUser != null){
+        if (firebaseAuth.currentUser != null) {
             val intent = Intent(this, student::class.java)
             startActivity(intent)
         }
