@@ -30,6 +30,7 @@ class student : AppCompatActivity() {
 
     private  lateinit var brupload:Button
     private lateinit var uri: Uri
+    private lateinit var uid:String
     private var storage=Firebase.storage
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +42,25 @@ class student : AppCompatActivity() {
         var addDetails = findViewById<ImageButton>(R.id.imageButton2)
         val logout = findViewById<Button>(R.id.logout)
         var user=findViewById<TextView>(R.id.User)
-        val uid= FirebaseAuth.getInstance().uid.toString()
+
+
+
+        ///////get id from the intent
+        val message = intent.getStringExtra("Id")?.toString()
+
+        uid="none"
+        if(message!=null)
+        {
+            Toast.makeText(this,"wrong",Toast.LENGTH_SHORT).show()
+             uid=message
+        }
+        else {
+            Toast.makeText(this,"correct executer",Toast.LENGTH_SHORT).show()
+             uid = FirebaseAuth.getInstance().uid.toString()
+        }
         image=findViewById<ImageView>(R.id.imageView)
         val docRef=db.collection("user").document(uid)
+        Toast.makeText(this,uid,Toast.LENGTH_SHORT).show()
         docRef.get().addOnSuccessListener {document->
             if(document!=null)
             {
@@ -89,18 +106,22 @@ class student : AppCompatActivity() {
 
         studDetails.setOnClickListener{
             val intent = Intent(this@student, student_details::class.java)
+            intent.putExtra("Id",message)
             startActivity(intent)
         }
         eduDetails.setOnClickListener{
-            val intent = Intent(this@student, educational_details::class.java)
+            val intent = Intent(this@student,Educational_details ::class.java)
+            intent.putExtra("Id",message)
             startActivity(intent)
         }
         acadDetails.setOnClickListener {
             val intent = Intent(this@student, academic_details::class.java)
+            intent.putExtra("Id",message)
             startActivity(intent)
         }
         addDetails.setOnClickListener {
             val intent = Intent(this@student, additional_details::class.java)
+            intent.putExtra("Id",message)
             startActivity(intent)
         }
 

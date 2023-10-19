@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.Calendar
@@ -37,6 +38,7 @@ class student_details : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     var db= Firebase.firestore
     private  lateinit var Submit:Button
+    private lateinit var uid:String
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,8 +122,23 @@ class student_details : AppCompatActivity() {
 
         // details from database
 
-        val uid= FirebaseAuth.getInstance().currentUser?.uid.toString()
-        val docRef=db.collection("user").document(uid)
+        val message = intent.getStringExtra("Id")?.toString()
+
+        uid="none"
+        val docRef:DocumentReference
+        if(message!=null)
+        {
+            Toast.makeText(this,"wrong",Toast.LENGTH_SHORT).show()
+            uid=message
+             docRef=db.collection("user").document(message)
+            Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+        }
+        else {
+            Toast.makeText(this,"correct executer",Toast.LENGTH_SHORT).show()
+            uid = FirebaseAuth.getInstance().uid.toString()
+            docRef=db.collection("user").document(uid)
+        }
+
         docRef.get().addOnSuccessListener {document->
             if(document!=null)
             {
@@ -206,7 +223,7 @@ class student_details : AppCompatActivity() {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
-                    position: Int,
+                position: Int,
                 id: Long
             ) {
                  ToselectedYear = years[position]
@@ -350,7 +367,7 @@ class student_details : AppCompatActivity() {
         //add to firebase
         Submit=findViewById(R.id.Submit)
         Submit.setOnClickListener {
-            val uid = firebaseAuth.currentUser?.uid.toString()
+
 
 
 
@@ -522,17 +539,17 @@ class student_details : AppCompatActivity() {
     }
 
     //Pemail validation
-    private fun validatePemail() {
-        val un = Pemail.text.toString()
-        if (un.isEmpty()) {
-            Pemail.error = "Parent email cannot be empty"
+        private fun validatePemail() {
+            val un = Pemail.text.toString()
+            if (un.isEmpty()) {
+                Pemail.error = "Parent email cannot be empty"
 
 
-        } else if (!un.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))) {
-            Pemail.error = "Please enter valid email address"
+            } else if (!un.matches(Regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\$"))) {
+                Pemail.error = "Please enter valid email address"
 
+            }
         }
-    }
 
     //Pphone validation
     private fun validatePphone() {

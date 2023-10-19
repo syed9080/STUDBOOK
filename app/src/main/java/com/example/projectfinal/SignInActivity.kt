@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
 import com.example.projectfinal.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -21,11 +20,6 @@ class SignInActivity : AppCompatActivity() {
 
 
         firebaseAuth = FirebaseAuth.getInstance()
-        binding.textView.setOnClickListener {
-
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
-        }
         binding.textView8.setOnClickListener{
             val intent=Intent(this,forgetpassword::class.java)
             startActivity(intent)
@@ -43,22 +37,11 @@ class SignInActivity : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-
                     }
                 }
             } else {
                 Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
             }
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        if (firebaseAuth.currentUser != null) {
-            val intent = Intent(this, student::class.java)
-            startActivity(intent)
         }
     }
 }

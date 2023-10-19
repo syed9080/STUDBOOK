@@ -16,4 +16,4 @@ class splashscreen : AppCompatActivity() {
 
         },3000)
     }
-    }
+}
